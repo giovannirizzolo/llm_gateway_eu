@@ -1,0 +1,6 @@
+[workspace]
+members = ["crate"]
+
+[profile.release]
+lto = true
+codegen-units = 1

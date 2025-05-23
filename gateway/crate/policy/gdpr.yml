@@ -1,0 +1,12 @@
+version: "2025-05"
+rules:
+    - id: pii-redact-email
+      description: Mask user e-mails in prompts before egress
+      matchers:
+          - type: Regex
+            target: "/messages/0/content"
+            pattern: "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b"
+            flags: ["ignoreCase"]
+      action:
+          kind: Redact
+          replace_with: "[EMAIL]"
